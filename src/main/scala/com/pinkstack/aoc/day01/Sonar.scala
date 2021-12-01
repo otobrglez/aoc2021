@@ -9,8 +9,7 @@ object Sonar {
   val deepIncreases: Array[Int] => Int = { report =>
     val windows: Array[Int] => Array[Int] = report =>
       report.zipWithIndex
-        .map(t => (t._1, List(-1, 0, 1).map(d => report.lift(t._2 + d))))
-        .map(_._2)
+        .map(t => List(-1, 0, 1).map(d => report.lift(t._2 + d)))
         .filterNot(_.exists(_.isEmpty))
         .map(_.foldLeft(0) { case (agg, Some(v)) => agg + v })
 
