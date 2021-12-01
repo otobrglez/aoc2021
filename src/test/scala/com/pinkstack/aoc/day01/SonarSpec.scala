@@ -1,21 +1,14 @@
 package com.pinkstack.aoc.day01
 
-import org.scalatest._
-import org.scalatest.flatspec._
-import org.scalatest.matchers._
-
+import com.pinkstack.aoc.TestSpec
 import scala.io.Source
-
-abstract class TestSpec extends AnyFlatSpec
-  with should.Matchers
-  with OptionValues with Inside with Inspectors
 
 class SonarSpec extends TestSpec {
   def readReportFile(): Array[Int] =
     Source.fromResource("day01-input.txt").getLines()
       .map(Integer.parseInt).toArray
 
-  val report = Array(
+  val report: Array[Int] = Array(
     199,
     200,
     208,
