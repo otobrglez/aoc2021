@@ -11,7 +11,10 @@ object Sonar {
       report.zipWithIndex
         .map(t => List(-1, 0, 1).map(d => report.lift(t._2 + d)))
         .filterNot(_.exists(_.isEmpty))
-        .map(_.foldLeft(0) { case (agg, Some(v)) => agg + v })
+        .map(_.foldLeft(0) {
+          case (agg, Some(v)) => agg + v
+          case (agg, _) => agg
+        })
 
     (windows andThen increases) (report)
   }
