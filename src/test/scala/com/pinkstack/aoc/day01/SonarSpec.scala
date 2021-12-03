@@ -4,11 +4,9 @@ import com.pinkstack.aoc.TestSpec
 import scala.io.Source
 
 class SonarSpec extends TestSpec {
-  def readReportFile(): Array[Int] =
-    Source.fromResource("day01-input.txt").getLines()
-      .map(Integer.parseInt).toArray
+  val inputReport = withInputFile("day01-input.txt")(Integer.parseInt)
 
-  val report: Array[Int] = Array(
+  val exampleReport: Array[Int] = Array(
     199,
     200,
     208,
@@ -22,18 +20,18 @@ class SonarSpec extends TestSpec {
   )
 
   "Sonar" should "work" in {
-    Sonar.increases(report) shouldEqual 7
+    Sonar.increases(exampleReport) shouldEqual 7
   }
 
   it should "compute result" in {
-    Sonar.increases(readReportFile()) shouldEqual 1292
+    Sonar.increases(inputReport) shouldEqual 1292
   }
 
   "Deeper" should "work" in {
-    Sonar.deepIncreases(report) shouldEqual 5
+    Sonar.deepIncreases(exampleReport) shouldEqual 5
   }
 
   it should "compute result for second part" in {
-    Sonar.deepIncreases(readReportFile()) shouldEqual 1262
+    Sonar.deepIncreases(inputReport) shouldEqual 1262
   }
 }

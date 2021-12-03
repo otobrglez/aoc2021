@@ -15,9 +15,7 @@ class DiveSpec extends TestSpec {
       case Array(direction, length) => toDirection(direction) -> Integer.parseInt(length)
     }
 
-  def readReportFile(): Array[(Direction, Int)] =
-    Source.fromResource("day02-input.txt").getLines()
-      .map(parseLine).toArray
+  val readReportFile: Array[(Direction, Int)] = withInputFile("day02-input.txt")(parseLine)
 
   val moves: Array[(Direction, Int)] = Array(
     "forward 5",
@@ -33,7 +31,7 @@ class DiveSpec extends TestSpec {
   }
 
   it should "parse input file" in {
-    readReportFile().length shouldEqual 1000
+    withInputFile("day02-input.txt")(identity).length shouldEqual 1000
   }
 
   it should "work on report" in {
@@ -45,7 +43,7 @@ class DiveSpec extends TestSpec {
   }
 
   it should "compute on my input" in {
-    Dive.positionCode(readReportFile()) shouldEqual 2_272_262
+    Dive.positionCode(readReportFile) shouldEqual 2_272_262
   }
 
   "Deep dive" should "work" in {
@@ -54,6 +52,6 @@ class DiveSpec extends TestSpec {
   }
 
   it should "compute my input" in {
-    Dive.aimedPositionCode(readReportFile()) shouldEqual(2_134_882_034)
+    Dive.aimedPositionCode(readReportFile) shouldEqual(2_134_882_034)
   }
 }
