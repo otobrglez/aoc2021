@@ -4,7 +4,7 @@ import com.pinkstack.aoc.TestSpec
 import scala.io.Source
 
 class SonarSpec extends TestSpec {
-  val inputReport = withInputFile("day01-input.txt")(Integer.parseInt)
+  val inputReport: Array[Int] = withInputFile("day01-input.txt")(Integer.parseInt)
 
   val exampleReport: Array[Int] = Array(
     199,

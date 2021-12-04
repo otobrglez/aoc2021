@@ -5,7 +5,7 @@ import com.pinkstack.aoc.TestSpec
 import core._, core.syntax._
 
 class DiagnosticSpec extends TestSpec {
-  val example: Array[String] =
+  val example: Array[BNumber] =
     """00100
       |11110
       |10110
@@ -18,10 +18,10 @@ class DiagnosticSpec extends TestSpec {
       |11001
       |00010
       |01010
-      |""".stripMargin.split('\n')
+      |""".stripMargin.split('\n').map(BNumber.fromString)
 
   "Diagnostic" should "work for given example" in {
-    Diagnostic.analyse(example.map(BNumber.fromString)) shouldEqual 198
+    Diagnostic.analyse(example) shouldEqual 198
   }
 
   it should "have conversion" in {
@@ -31,8 +31,13 @@ class DiagnosticSpec extends TestSpec {
     BNumber.fromString("10110") shouldEqual Array[Bit](1, 0, 1, 1, 0)
   }
 
-  "Part I" should "work" in {
+  "Part I" should "work for input" in {
     val report: Array[BNumber] = withInputFile("day03-input.txt")(BNumber.fromString)
     Diagnostic.analyse(report) shouldEqual 1_131_506
+  }
+
+  "Part II" should "work on given example" in {
+    println(example.length)
+    println(Diagnostic.lifeSupportRating(example))
   }
 }
