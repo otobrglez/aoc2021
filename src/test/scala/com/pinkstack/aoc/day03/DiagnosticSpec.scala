@@ -35,9 +35,4 @@ class DiagnosticSpec extends TestSpec {
     val report: Array[BNumber] = withInputFile("day03-input.txt")(BNumber.fromString)
     Diagnostic.analyse(report) shouldEqual 1_131_506
   }
-
-  "Part II" should "work on given example" in {
-    println(example.length)
-    println(Diagnostic.lifeSupportRating(example))
-  }
 }

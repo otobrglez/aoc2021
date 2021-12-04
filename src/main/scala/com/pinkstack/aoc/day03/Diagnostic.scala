@@ -39,7 +39,7 @@ object Diagnostic {
     BNumber.mkEmpty(report.head.length).coerce.map(_ => Map[Bit, Sum](0 -> 0, 1 -> 0))
 
   // Part I.
-  def analyse(report: Array[BNumber]): Int = {
+  val analyse: Array[BNumber] => Int = { report =>
     val rates = report.foldLeft(empty(report)) { (agg, number) =>
       agg.zip(number.coerce.map(bit => Map[Bit, Sum](bit -> 1)))
         .map { case (a, n) => a ++ n.map { case (k, v) => k -> (v + a.getOrElse(k, 0)) } }
@@ -48,26 +48,5 @@ object Diagnostic {
       BNumber.mkNumber(rates.map(_.maxBy(_._2)).map(_._1)),
       BNumber.mkNumber(rates.map(_.minBy(_._2)).map(_._1))
     ).product
-  }
-
-  // Part II.
-  def lifeSupportRating(report: Array[BNumber]) = {
-    val rates = report.foldLeft(empty(report)) { (agg, number) =>
-      agg.zip(number.coerce.map(bit => Map[Bit, Sum](bit -> 1)))
-        .map { case (a, n) => a ++ n.map { case (k, v) => k -> (v + a.getOrElse(k, 0)) } }
-    }
-
-    pprintln(rates)
-
-    val p = rates.map { c =>
-      val max = c.maxBy(_._2)
-      val min = c.minBy(_._2)
-      val filterBy = if(max._1 == min._1) {
-        42 // TODO: eee!
-      } else max._1
-      println(c, max, min, filterBy)
-    }
-
-    "ok"
   }
 }
