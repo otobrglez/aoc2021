@@ -2,7 +2,7 @@ package com.pinkstack.aoc
 
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should
-import org.scalatest.{Inside, Inspectors, OptionValues}
+import org.scalatest.{Inside, Inspectors, OptionValues, Tag}
 
 import java.nio.file.{Files, Paths}
 import scala.io.Source
@@ -19,3 +19,5 @@ abstract class TestSpec extends AnyFlatSpec
   def inputFile[F](path: String): String =
     new String(Files.readAllBytes(Paths.get(getClass.getResource("/" + path).getPath)))
 }
+
+object FinalSolution extends Tag("com.pinkstack.aoc.FinalSolution")
