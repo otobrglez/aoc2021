@@ -23,6 +23,6 @@ sbt "testOnly com.pinkstack.aoc.day02.*" # For specific day/scenario
 ![Day 03](docs/day03.png)
 
 ### Day 04
-![Day 03](docs/day03.png)
+![Day 03](docs/day04.png)
 
 [aoc]: https://adventofcode.com/
